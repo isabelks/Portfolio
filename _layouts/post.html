@@ -2,14 +2,33 @@
 layout: default
 ---
 <div class="post">
-
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+    
+    {% if page.tags %}
+    	<span class="detail"><i class="fa fa-tags"></i> {{ page.tags }}</span>
+    {% endif %}
+
+    {% if page.link %}
+    	<span class="detail"><a href="{{ page.link }}" title="{{page.title}}" target="_blank"><i class="fa fa-external-link"></i> {{ page.link }}</a></span>
+    {% endif %}
   </header>
 
   <article class="post-content">
     {{ content }}
   </article>
 
+  <nav class="post-navigation">
+    {% if page.previous %} 
+      <span class="previous-link right">
+        <a rel="prev" href="{{ page.previous.url }}">{{page.previous.title}} <i class="fa fa-angle-double-right"></i></a>
+      </span>
+    {% endif %}
+
+    {% if page.next %} 
+      <span class="next-link left">
+        <a rel="next" href="{{ page.next.url }}"><i class="fa fa-angle-double-left"></i> {{page.next.title}}</a>
+      </span>
+    {% endif %}
+  </div>
 </div>
